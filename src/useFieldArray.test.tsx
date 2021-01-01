@@ -203,22 +203,22 @@ describe('useFieldArray', () => {
       expect(console.warn).not.toBeCalled();
     });
 
-    it('should output error message when a conflicting fieldArray keyName is found in the fieldValues in development mode', () => {
-      jest.spyOn(console, 'warn').mockImplementation(() => {});
+    // it('should output error message when a conflicting fieldArray keyName is found in the fieldValues in development mode', () => {
+    //   jest.spyOn(console, 'warn').mockImplementation(() => {});
 
-      process.env.NODE_ENV = 'development';
+    //   process.env.NODE_ENV = 'development';
 
-      renderHook(() => {
-        const { control } = useForm({
-          defaultValues: {
-            test: [{ id: '123' }],
-          },
-        });
-        useFieldArray({ control, name: 'test' });
-      });
+    //   renderHook(() => {
+    //     const { control } = useForm({
+    //       defaultValues: {
+    //         test: [{ id: '123' }],
+    //       },
+    //     });
+    //     useFieldArray({ control, name: 'test' });
+    //   });
 
-      expect(console.warn).toBeCalledTimes(1);
-    });
+    //   expect(console.warn).toBeCalledTimes(1);
+    // });
 
     it('should not output error message when a conflicting fieldArray keyName is found in the fieldValues in production mode', () => {
       jest.spyOn(console, 'warn').mockImplementation(() => {});
@@ -255,36 +255,36 @@ describe('useFieldArray', () => {
       expect(result.error.name).toBe(new TypeError().name);
     });
 
-    it.each(['test', 'test[0].value'])(
-      'should output error message when registered field name is %s in development environment',
-      (name) => {
-        jest.spyOn(console, 'warn').mockImplementation(() => {});
+    // it.each(['test', 'test[0].value'])(
+    //   'should output error message when registered field name is %s in development environment',
+    //   (name) => {
+    //     jest.spyOn(console, 'warn').mockImplementation(() => {});
 
-        process.env.NODE_ENV = 'development';
+    //     process.env.NODE_ENV = 'development';
 
-        const Component = () => {
-          const { register, control } = useForm();
-          const { fields, append } = useFieldArray({ name, control });
+    //     const Component = () => {
+    //       const { register, control } = useForm();
+    //       const { fields, append } = useFieldArray({ name, control });
 
-          return (
-            <form>
-              {fields.map((field, i) => (
-                <input key={field.id} name={`${name}[${i}]`} ref={register()} />
-              ))}
-              <button type="button" onClick={() => append({})}>
-                append
-              </button>
-            </form>
-          );
-        };
+    //       return (
+    //         <form>
+    //           {fields.map((field, i) => (
+    //             <input key={field.id} name={`${name}[${i}]`} ref={register()} />
+    //           ))}
+    //           <button type="button" onClick={() => append({})}>
+    //             append
+    //           </button>
+    //         </form>
+    //       );
+    //     };
 
-        render(<Component />);
+    //     render(<Component />);
 
-        fireEvent.click(screen.getByRole('button', { name: /append/i }));
+    //     fireEvent.click(screen.getByRole('button', { name: /append/i }));
 
-        expect(console.warn).toBeCalledTimes(1);
-      },
-    );
+    //     expect(console.warn).toBeCalledTimes(1);
+    //   },
+    // );
 
     it.each([
       ['test', 'key'],

@@ -37,23 +37,23 @@ const mapIds = <
 ): Partial<ArrayField<TFieldArrayValues, TKeyName>>[] => {
   if (process.env.NODE_ENV !== 'production') {
     if (!skipWarn) {
-      for (const value of values) {
-        if (typeof value === 'object') {
-          if (keyName in value) {
-            console.warn(
-              `📋 useFieldArray fieldValues contain the keyName \`${keyName}\` which is reserved for use by useFieldArray. https://react-hook-form.com/api#useFieldArray`,
-            );
+      // for (const value of values) {
+      //   if (typeof value === 'object') {
+      //     if (keyName in value) {
+      //       console.warn(
+      //         `📋 useFieldArray fieldValues contain the keyName \`${keyName}\` which is reserved for use by useFieldArray. https://react-hook-form.com/api#useFieldArray`,
+      //       );
 
-            break;
-          }
-        } else {
-          console.warn(
-            `📋 useFieldArray input's name should be in object shape instead of flat array. https://react-hook-form.com/api#useFieldArray`,
-          );
+      //       break;
+      //     }
+      //   } else {
+      //     console.warn(
+      //       `📋 useFieldArray input's name should be in object shape instead of flat array. https://react-hook-form.com/api#useFieldArray`,
+      //     );
 
-          break;
-        }
-      }
+      //     break;
+      //   }
+      // }
     }
   }
 
