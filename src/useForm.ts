@@ -927,20 +927,20 @@ export function useForm<
         );
       }
 
-      if (
-        fieldArrayNamesRef.current.has(ref.name.split(/\[\d+\]$/)[0]) &&
-        !RegExp(
-          `^${ref.name.split(/\[\d+\]$/)[0]}[\\d+].\\w+`
-            .replace(/\[/g, '\\[')
-            .replace(/\]/g, '\\]'),
-        ).test(ref.name)
-      ) {
-        return console.warn(
-          '📋 `name` prop should be in object shape: name="test[index].name"',
-          ref,
-          'https://react-hook-form.com/api#useFieldArray',
-        );
-      }
+      // if (
+      //   fieldArrayNamesRef.current.has(ref.name.split(/\[\d+\]$/)[0]) &&
+      //   !RegExp(
+      //     `^${ref.name.split(/\[\d+\]$/)[0]}[\\d+].\\w+`
+      //       .replace(/\[/g, '\\[')
+      //       .replace(/\]/g, '\\]'),
+      //   ).test(ref.name)
+      // ) {
+      //   return console.warn(
+      //     '📋 `name` prop should be in object shape: name="test[index].name"',
+      //     ref,
+      //     'https://react-hook-form.com/api#useFieldArray',
+      //   );
+      // }
     }
 
     const { name, type, value } = ref;
